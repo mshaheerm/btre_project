@@ -57,7 +57,8 @@ def search(request):
         'stateChoices': stateChoices,
         'priceChoices': priceChoices,
         'bedroomChoices': bedroomChoices,
-        'listings': querysetList
+        'listings': querysetList,
+        'values': request.GET
     }
 
     return render (request, 'listings/search.html', context)
