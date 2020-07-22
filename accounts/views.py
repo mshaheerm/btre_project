@@ -31,7 +31,7 @@ def register(request):
                     # messages.success(request, 'You are now logged in')
                     # return redirect('index')
                     user.save()
-                    messages.success(request, 'You are now registered and can log in')
+                    messages.success(request, 'You are now registered and can log in!')
                     return redirect('login')
         else:
             messages.error(request, 'Passwords do not match')
@@ -41,8 +41,17 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        # Login User
-        return
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request,'You are now logged in!')
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Invalid Username and/or Password')
+            return redirect('login')
     else:
         return render (request, 'accounts/login.html')
 
