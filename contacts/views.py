@@ -32,7 +32,7 @@ def contact(request):
         'Property Listing Inquiry',
         'There has been an inquiry for "' + listing + '". Sign into admin panel for more info',
         'msmuser4@gmail.com',
-        [realtor_email, 'mshaheermunir@gmail.com'],
+        [realtor_email],
         fail_silently=False
     )
 
